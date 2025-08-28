@@ -1,0 +1,17 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mega.mapper.pjtUserMapper">
+
+  <insert id="insertUser" parameterType="com.mega.entity.pjtUser">
+    INSERT INTO users(userid, username, password, role)
+    VALUES (#{userid}, #{username}, #{password}, #{role})
+  </insert>
+
+  <select id="findByUserid" parameterType="string" resultType="com.mega.entity.pjtUser">
+    SELECT id, userid, username, password, role
+    FROM users
+    WHERE userid = #{userid}
+  </select>
+
+</mapper>

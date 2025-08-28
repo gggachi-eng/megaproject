@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/arin_db
+    username: postgres
+    password: Wownd@12!
+    driver-class-name: org.postgresql.Driver
+  # 로그 설정
+  devtools:
+    restart:
+      enabled: true
+      
+mybatis:
+  #config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.mega.megapjt.entity
+  log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # ✅ 콘솔에 SQL 출력
+
+logging:
+  level:
+    root: info
+    com.mega: debug             # ✅ 우리 프로젝트 패키지 로그
+    org.mybatis: debug          # ✅ 마이바티스 로그
+    jdbc.sqlonly: debug         # ✅ SQL만 보기 원할 경우
+
+jwt:
+  secret: jdZKDEc1mj+jOxE/iDbyWlggNiJnYA3BdWl5PHAdtSaGUO8z4BmuZSx0lkvCfDXCDa/bXlN5QWzzywrdVfF+UQ==
+  expiration: 3600000
+
+server:
+  port: 8080

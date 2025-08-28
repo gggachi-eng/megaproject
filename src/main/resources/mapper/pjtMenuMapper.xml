@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mega.mapper.pjtMenuMapper">
+  <select id="selectMenusByUser" resultType="com.mega.entity.pjtMenu">
+    SELECT m.*
+    FROM menus m
+    JOIN user_menu_authority uma ON m.menuid = uma.menuid
+    WHERE uma.userid = #{userid}
+      AND uma.can_access = TRUE
+    ORDER BY m.parent_id, m.sort_order
+  </select>
+
+  <select id="findAll" resultType="com.mega.entity.pjtMenu">
+    SELECT *
+      FROM menus ORDER BY parent_id, menuid
+  </select>
+  <select id="findById" parameterType="long" resultType="com.mega.entity.pjtMenu">
+    SELECT *
+      FROM menus WHERE menuid = #{menuId}
+  </select>
+  <insert id="insertMenu" parameterType="com.mega.entity.pjtMenu">
+    INSERT INTO menus (parent_id, menuname, path)
+    VALUES (#{parentId}, #{menuName}, #{path})
+  </insert>
+  <update id="updateMenu" parameterType="com.mega.entity.pjtMenu">
+    UPDATE menus SET parent_id = #{parentId}, menuname = #{menuName}, path = #{path}
+    WHERE menuid = #{menuId}
+  </update>
+  <delete id="deleteMenu" parameterType="long">
+    DELETE FROM menus WHERE menuid = #{menuId}
+  </delete>
+</mapper>
