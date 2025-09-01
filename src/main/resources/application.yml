@@ -1,6 +1,7 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/arin_db
+    #url: jdbc:postgresql://localhost:5432/arin_db
+    url: jdbc:postgresql://4.230.134.186:5432/arin_db
     username: postgres
     password: Wownd@12!
     driver-class-name: org.postgresql.Driver
